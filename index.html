@@ -12,7 +12,7 @@
         .container {
             width: 350px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 35px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgb(62, 8, 188);
@@ -32,10 +32,9 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        input:hover{
+        input:hover {
             box-shadow: 0 0 10px rgb(0, 85, 255);
-            border: 3px solid  rgba(0, 85, 255, 0.662);
-
+            border: 3px solid rgba(0, 85, 255, 0.662);
         }
         input[type="submit"] {
             display: block;
@@ -47,7 +46,6 @@
             border-radius: 4px;
             color: white;
             font-weight: bold;
-
         }
         input[type="submit"]:hover {
             background-color: #23a940;
@@ -55,64 +53,127 @@
             padding: 13px;
             font-size: 14px;
             font-weight: bolder;
-            
         }
     </style>
 </head>
 <body>
-
+    
     <div class="container">
         <h2>Registration Form</h2>
-        <form onsubmit="showMessage(); return false;">
+        <form id="registrationForm">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" name="fname" pattern="[A-Za-z]+" title="Only alphabets are allowed" required>
-
-            <label for="mname">Middle Name</label>
-            <input type="text" id="mname" name="mname" pattern="[A-Za-z]*" title="Only alphabets are allowed">
-
+            <input type="text" class="name required" id="fname" name="fname">
+            
             <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lname" pattern="[A-Za-z]+" title="Only alphabets are allowed" required>
-
+            <input type="text" class="name required" id="lname" name="lname">
+            
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
+            <input type="email" class="required" id="email" name="email">
+            
             <label for="contact">Contact</label>
-            <input type="tel" id="contact" name="contact" pattern="\d{10}" maxlength="10" title="Enter a 10-digit phone number" required>
-
+            <input type="tel" class="required" id="contact" name="contact">
+            
             <label for="address">Address</label>
-            <input type="text" id="address" name="address" required>
-
+            <input type="text" class="required" id="address" name="address">
+            
             <label for="city">City</label>
-            <input type="text" id="city" name="city" required>
-
+            <input type="text" class="required" id="city" name="city">
+            
             <input type="submit" value="Submit">
         </form>
     </div>
-
+    
     <script>
-        var fname = document.getElementById("fname");
-        var mname = document.getElementById("mname");
-        var lname = document.getElementById("lname");
-        var email = document.getElementById("email");
-        var cont = document.getElementById("contact");
-        var add = document.getElementById("address");
-        var city = document.getElementById("city");
-
-
-            function clearFields() {
-        fname.value = "";
-        mname.value = "";
-        lname.value = "";
-        email.value = "";
-        cont.value = "";
-        add.value = "";
-        city.value = "";
-    }
+        function clearFields() {
+            document.getElementById("fname").value = "";
+            document.getElementById("lname").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("contact").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("city").value = "";
+        }
+        
         function showMessage() {
             alert("Registration completed!");
-            clearFields()
+            clearFields();
         }
-    </script>
+        
+        function formValidation(event) {
+            event.preventDefault();
+            
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var email = document.getElementById("email").value;
+            var contact = document.getElementById("contact").value;
+            var address = document.getElementById("address").value;
+            var city = document.getElementById("city").value;
+            var name= document.getElementsByClassName("name").value;
+            
+            if (fname === "" || lname === "" || email === "" || contact === "" || address === "" || city === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+            
+            
+            function containsOnlyAlphabets(str) {
+                for (let i = 0; i < str.length; i++) {
+                    let char = str[i];
+                    if (char < 'A' || (char > 'Z' && char < 'a') || char > 'z') {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            
+            if (!containsOnlyAlphabets(fname)) {
+                alert("First name must contain only alphabets.");
+                return false;
+            }
+            
+            if(!containsOnlyAlphabets(lname)){
+                alert("Last name must contain only alphabets.");
+                return false;
+            }
+            
+            function containsOnlyNumber(num){
+                for (i=0;i<=num.length;i++){
+                    let number=num[i];
+                    if((number >= '0' && number <= '9')&& num.length === 10){
+                        return true
+                    }
+                    
+                }
+                return false
+            }
+            
+            if(!containsOnlyNumber(contact)){
+                alert("Contact should be in numbers and 10 digits only");
+                return false;
+            }
+            
+            
+            function isValidEmail(email) {
+                if(email.endsWith("@gmail.com")){
+                    return true
+                }
+                else{
+                    
+                    alert("Email must be a valid Gmail address ending with '@gmail.com'.");
+                    return false
+                }
+                
+            }
+            if (!isValidEmail(email)) {
+                return false;
+            }
+            
+            showMessage(); 
+            return true;
+        }
+        
 
+        document.getElementById("registrationForm").addEventListener("submit", formValidation);
+    </script>
+    
 </body>
 </html>
