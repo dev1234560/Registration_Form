@@ -90,8 +90,27 @@
     </div>
 
     <script>
+        var fname = document.getElementById("fname");
+        var mname = document.getElementById("mname");
+        var lname = document.getElementById("lname");
+        var email = document.getElementById("email");
+        var cont = document.getElementById("contact");
+        var add = document.getElementById("address");
+        var city = document.getElementById("city");
+
+
+            function clearFields() {
+        fname.value = "";
+        mname.value = "";
+        lname.value = "";
+        email.value = "";
+        cont.value = "";
+        add.value = "";
+        city.value = "";
+    }
         function showMessage() {
             alert("Registration completed!");
+            clearFields()
         }
     </script>
 
