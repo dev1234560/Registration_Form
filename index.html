@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgb(62, 8, 188);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"] {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input:hover{
+            box-shadow: 0 0 10px rgb(0, 85, 255);
+            border: 3px solid  rgba(0, 85, 255, 0.662);
+
+        }
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            width: 20%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+
+        }
+        input[type="submit"]:hover {
+            background-color: #23a940;
+            width: 21%;
+            padding: 13px;
+            font-size: 14px;
+            font-weight: bolder;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form onsubmit="showMessage(); return false;">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" pattern="[A-Za-z]+" title="Only alphabets are allowed" required>
+
+            <label for="mname">Middle Name</label>
+            <input type="text" id="mname" name="mname" pattern="[A-Za-z]*" title="Only alphabets are allowed">
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" pattern="[A-Za-z]+" title="Only alphabets are allowed" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="contact">Contact</label>
+            <input type="tel" id="contact" name="contact" pattern="\d{10}" maxlength="10" title="Enter a 10-digit phone number" required>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function showMessage() {
+            alert("Registration completed!");
+        }
+    </script>
+
+</body>
+</html>
